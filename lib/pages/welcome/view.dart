@@ -1,4 +1,4 @@
-import 'package:dots_indicator/dots_indicator.dart';
+import 'package:firebase_chat/common/widgets/dots_indicator.dart';
 import 'package:firebase_chat/pages/welcome/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,7 @@ class WelcomePage extends GetView<WelcomeController> {
     return Scaffold(
       body: Obx(
         () => SizedBox(
-          width: 360.w,
+          width: 361.w,
           height: 780.w,
           child: Stack(
             alignment: Alignment.bottomCenter,
@@ -81,19 +81,10 @@ class WelcomePage extends GetView<WelcomeController> {
                 ],
               ),
               Positioned(
-                bottom: 70,
-                child: DotsIndicator(
-                  position: controller.state.index.value,
-                  dotsCount: 3,
-                  reversed: false,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  decorator: DotsDecorator(
-                      size: const Size.square(9),
-                      activeSize: const Size(18, 9),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                ),
-              ),
+                  bottom: 70,
+                  child: DotsIndicatoritem(
+                    controller: controller,
+                  )),
             ],
           ),
         ),
