@@ -22,20 +22,20 @@ class MessagesListItem extends StatelessWidget {
           var toUid = '';
           var toName = '';
           var toAvatar = '';
-          if (item.data().from_uid == controller.token) {
-            toUid = item.data().to_uid ?? '';
-            toName = item.data().to_name ?? '';
-            toAvatar = item.data().to_avatar ?? '';
+          if (item.data().fromUid == controller.token) {
+            toUid = item.data().toUid ?? '';
+            toName = item.data().toName ?? '';
+            toAvatar = item.data().toAvatar ?? '';
           } else {
-            toUid = item.data().from_uid ?? '';
-            toName = item.data().from_name ?? '';
-            toAvatar = item.data().from_avatar ?? '';
+            toUid = item.data().fromUid ?? '';
+            toName = item.data().fromName ?? '';
+            toAvatar = item.data().fromAvatar ?? '';
           }
           Get.toNamed('/chat', parameters: {
-            'doce_id':item.id,
-            'to_uid' : toUid,
-            'to_name' : toName,
-            'to_avatar' : toAvatar
+            'doce_id': item.id,
+            'to_uid': toUid,
+            'to_name': toName,
+            'to_avatar': toAvatar
           });
         },
         child: Row(
@@ -48,9 +48,9 @@ class MessagesListItem extends StatelessWidget {
                 width: 54.w,
                 height: 54.w,
                 child: CachedNetworkImage(
-                  imageUrl: item.data().from_uid == controller.token
-                      ? item.data().to_avatar!
-                      : item.data().from_avatar!,
+                  imageUrl: item.data().fromUid == controller.token
+                      ? item.data().toAvatar!
+                      : item.data().fromAvatar!,
                   imageBuilder: (context, imageProvider) {
                     return Container(
                       width: 54.w,
@@ -89,9 +89,9 @@ class MessagesListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          item.data().from_uid == controller.token
-                              ? item.data().to_name!
-                              : item.data().from_name!,
+                          item.data().fromUid == controller.token
+                              ? item.data().toName!
+                              : item.data().fromName!,
                           overflow: TextOverflow.clip,
                           maxLines: 1,
                           style: TextStyle(
@@ -101,7 +101,7 @@ class MessagesListItem extends StatelessWidget {
                               fontSize: 16.sp),
                         ),
                         Text(
-                          item.data().last_msg ?? '',
+                          item.data().lastMsg ?? '',
                           overflow: TextOverflow.clip,
                           maxLines: 1,
                           style: TextStyle(
@@ -122,7 +122,7 @@ class MessagesListItem extends StatelessWidget {
                       children: [
                         Text(
                           duTimeLineFormat(
-                              (item.data().last_time as Timestamp).toDate()),
+                              (item.data().lastTime as Timestamp).toDate()),
                           overflow: TextOverflow.clip,
                           maxLines: 1,
                           style: TextStyle(

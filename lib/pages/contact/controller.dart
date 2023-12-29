@@ -48,15 +48,15 @@ class ContactController extends GetxController {
       UserLoginResponseEntity userdata =
           UserLoginResponseEntity.fromJson(jsonDecode(profile));
       var msgData = Msg(
-        from_uid: userdata.accessToken,
-        to_uid: toUserData.id,
-        from_name: userdata.displayName,
-        to_name: toUserData.name,
-        from_avatar: userdata.photoUrl,
-        to_avatar: toUserData.photourl,
-        last_msg: '',
-        last_time: Timestamp.now(),
-        msg_num: 0,
+        fromUid: userdata.accessToken,
+        toUid: toUserData.id,
+        fromName: userdata.displayName,
+        toName: toUserData.name,
+        fromAvatar: userdata.photoUrl,
+        toAvatar: toUserData.photourl,
+        lastMsg: '',
+        lastTime: Timestamp.now(),
+        msgNum: 0,
       );
       db
           .collection('message')
@@ -75,22 +75,22 @@ class ContactController extends GetxController {
         });
       });
     } else {
-       if (formMessages.docs.isNotEmpty) {
-         Get.toNamed('/chat', parameters: {
+      if (formMessages.docs.isNotEmpty) {
+        Get.toNamed('/chat', parameters: {
           'doce_id': formMessages.docs.first.id,
           'to_uid': toUserData.id ?? '',
           'to_name': toUserData.name ?? '',
           'to_avatar': toUserData.photourl ?? ''
         });
-       }
-       if (toMessages.docs.isNotEmpty) {
-         Get.toNamed('/chat', parameters: {
+      }
+      if (toMessages.docs.isNotEmpty) {
+        Get.toNamed('/chat', parameters: {
           'doce_id': toMessages.docs.first.id,
           'to_uid': toUserData.id ?? '',
           'to_name': toUserData.name ?? '',
           'to_avatar': toUserData.photourl ?? ''
         });
-       }
+      }
     }
   }
 
